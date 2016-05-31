@@ -11,6 +11,9 @@ pygame.display.set_caption('Slither')
 
 game_exit = False
 
+lead_x = 300
+lead_y = 300
+
 while not game_exit:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
