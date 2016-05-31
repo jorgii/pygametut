@@ -98,7 +98,12 @@ def game_loop():
         pygame.display.update()
 
         if lead_x == rand_apple_x and lead_y == rand_apple_y:
-            print("om nom nom")
+            rand_apple_x = round(random.randrange(
+                0,
+                display_width - block_size)/block_size)*block_size
+            rand_apple_y = round(random.randrange(
+                0,
+                display_height - block_size)/block_size)*block_size
 
         clock.tick(FPS)
 
