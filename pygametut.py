@@ -1,4 +1,5 @@
 import pygame
+import time
 
 pygame.init()
 
@@ -68,5 +69,9 @@ while not game_exit:
     pygame.display.update()
 
     clock.tick(FPS)
+
+message_to_screen("YOU DIED", red)
+time.sleep(2)
+
 pygame.quit()
 quit()
