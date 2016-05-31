@@ -18,11 +18,14 @@ while not game_exit:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_exit = True
+        if event.typ == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                lead_x -= 10
+            if event.key == pygame.K_RIGHT:
+                lead_x += 10
     game_display.fill(white)
-    pygame.draw.rect(game_display, black, [400, 300, 10, 100])
-    pygame.draw.rect(game_display, red, [400, 300, 10, 10])
+    pygame.draw.rect(game_display, black, [lead_x, lead_y, 10, 100])
 
-    game_display.fill(red, rect=[200, 200, 50, 50])
     pygame.display.update()
 pygame.quit()
 quit()
