@@ -12,5 +12,5 @@ while not game_exit:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_exit = True
-pygam.quit()
+pygame.quit()
 quit()
