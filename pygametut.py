@@ -18,7 +18,7 @@ while not game_exit:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_exit = True
-        if event.typ == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 lead_x -= 10
             if event.key == pygame.K_RIGHT:
