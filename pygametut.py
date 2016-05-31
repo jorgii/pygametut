@@ -23,9 +23,9 @@ while not game_exit:
             game_exit = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                lead_x_change = -10
+                lead_x_change = -2
             if event.key == pygame.K_RIGHT:
-                lead_x_change = 10
+                lead_x_change = 2
     lead_x += lead_x_change
 
     game_display.fill(white)
@@ -33,6 +33,6 @@ while not game_exit:
 
     pygame.display.update()
 
-    clock.tick(30)
+    clock.tick(100)
 pygame.quit()
 quit()
