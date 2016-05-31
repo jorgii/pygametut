@@ -16,7 +16,10 @@ while not game_exit:
         if event.type == pygame.QUIT:
             game_exit = True
     game_display.fill(white)
-    pygame.draw.rect(game_display, black, [400, 300, 10, 10])
+    pygame.draw.rect(game_display, black, [400, 300, 10, 100])
+    pygame.draw.rect(game_display, red, [400, 300, 10, 10])
+
+    game_display.fill(red, rect=[200, 200, 50, 50])
     pygame.display.update()
 pygame.quit()
 quit()
