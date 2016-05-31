@@ -25,6 +25,13 @@ FPS = 100
 
 clock = pygame.time.Clock()
 
+font = pygame.font.SysFont(None, 25)
+
+
+def message_to_screen(msg, color):
+    screen_text = font.render(msg, True, color)
+    game_display.blit(screen_text, [display_width/2, display_height/2])
+
 while not game_exit:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
