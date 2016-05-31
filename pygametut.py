@@ -24,7 +24,7 @@ while not game_exit:
             if event.key == pygame.K_RIGHT:
                 lead_x += 10
     game_display.fill(white)
-    pygame.draw.rect(game_display, black, [lead_x, lead_y, 10, 100])
+    pygame.draw.rect(game_display, black, [lead_x, lead_y, 10, 10])
 
     pygame.display.update()
 pygame.quit()
