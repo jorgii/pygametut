@@ -36,7 +36,7 @@ while not game_exit:
                 lead_y_change = 2
                 lead_x_change = 0
 
-    if lead_x > 800 or lead_x < 0 or lead_y > 600 or lead_y < 0:
+    if lead_x >= 790 or lead_x < 0 or lead_y >= 590 or lead_y < 0:
         game_exit = True
 
     lead_x += lead_x_change
