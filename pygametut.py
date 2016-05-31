@@ -47,6 +47,7 @@ def game_loop():
     lead_x_change = 0
     lead_y_change = 0
     snake_list = []
+    snake_length = 1
     rand_apple_x = round(random.randrange(
         0,
         display_width - block_size)/block_size)*block_size
@@ -104,6 +105,9 @@ def game_loop():
         snake_head.append(lead_y)
         snake_list.append(snake_head)
 
+        if len(snake_list) > snake_length:
+            del snake_list[0]
+
         snake(block_size, snake_list)
         pygame.display.update()
 
@@ -114,6 +118,7 @@ def game_loop():
             rand_apple_y = round(random.randrange(
                 0,
                 display_height - block_size)/block_size)*block_size
+            snake_length += 1
 
         clock.tick(FPS)
 
