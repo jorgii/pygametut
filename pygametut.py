@@ -25,12 +25,16 @@ while not game_exit:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 lead_x_change = -2
+                lead_y_change = 0
             elif event.key == pygame.K_RIGHT:
                 lead_x_change = 2
+                lead_y_change = 0
             elif event.key == pygame.K_UP:
                 lead_y_change = -2
+                lead_x_change = 0
             elif event.key == pygame.K_DOWN:
                 lead_y_change = 2
+                lead_x_change = 0
 
     lead_x += lead_x_change
     lead_y += lead_y_change
