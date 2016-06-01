@@ -107,7 +107,9 @@ def game_loop():
 
         if len(snake_list) > snake_length:
             del snake_list[0]
-
+        for segment in snake_list[:-1]:
+            if segment == snake_head:
+                game_over = True
         snake(block_size, snake_list)
         pygame.display.update()
 
