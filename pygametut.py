@@ -16,9 +16,11 @@ display_height = 600
 game_display = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Slither')
 
-block_size = 10
+img = pygame.image.load('snake_head.png')
+block_size = 20
 block_change = 10
 FPS = 30
+direction = 'right'
 
 clock = pygame.time.Clock()
 
@@ -26,16 +28,23 @@ font = pygame.font.SysFont(None, 25)
 
 
 def snake(block_size, snake_list):
-        for block in snake_list:
-            pygame.draw.rect(
-                game_display,
-                black,
-                [block[0], block[1], block_size, block_size])
+    game_display.blit(img, (snake_list[-1][0], snake_list[-1][1]))
+    for block in snake_list[:-1]:
+        pygame.draw.rect(
+            game_display,
+            black,
+            [block[0], block[1], block_size, block_size])
+
+
+def text_objects(text, color):
+    text_surface = font.render(text, True, color)
+    return text_surface, text_surface.get_rect()
 
 
 def message_to_screen(msg, color):
-    screen_text = font.render(msg, True, color)
-    game_display.blit(screen_text, [display_width/2, display_height/2])
+    text_surface, text_rect = text_objects(msg, color)
+    text_rect.center = (display_width/2), (display_height/2)
+    game_display.blit(text_surface, text_rect)
     pygame.display.update()
 
 
@@ -44,7 +53,7 @@ def game_loop():
     game_over = False
     lead_x = display_width/2
     lead_y = display_height/2
-    lead_x_change = 0
+    lead_x_change = 10
     lead_y_change = 0
     snake_list = []
     snake_length = 1
@@ -96,10 +105,11 @@ def game_loop():
         lead_y += lead_y_change
 
         game_display.fill(white)
+        apple_thickness = 30
         pygame.draw.rect(
             game_display,
             green,
-            [rand_apple_x, rand_apple_y, block_size, block_size])
+            [rand_apple_x, rand_apple_y, apple_thickness, apple_thickness])
         snake_head = []
         snake_head.append(lead_x)
         snake_head.append(lead_y)
@@ -113,14 +123,16 @@ def game_loop():
         snake(block_size, snake_list)
         pygame.display.update()
 
-        if lead_x == rand_apple_x and lead_y == rand_apple_y:
-            rand_apple_x = round(random.randrange(
-                0,
-                display_width - block_size)/block_size)*block_size
-            rand_apple_y = round(random.randrange(
-                0,
-                display_height - block_size)/block_size)*block_size
-            snake_length += 1
+        if lead_x >= rand_apple_x and lead_x <= rand_apple_x + apple_thickness:
+            if lead_y >= rand_apple_y and lead_y <= rand_apple_y + \
+                    apple_thickness:
+                rand_apple_x = round(random.randrange(
+                    0,
+                    display_width - block_size)/block_size)*block_size
+                rand_apple_y = round(random.randrange(
+                    0,
+                    display_height - block_size)/block_size)*block_size
+                snake_length += 1
 
         clock.tick(FPS)
 
