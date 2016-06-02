@@ -24,7 +24,9 @@ direction = 'right'
 
 clock = pygame.time.Clock()
 
-font = pygame.font.SysFont(None, 25)
+small_font = pygame.font.SysFont('arial', 25)
+medium_font = pygame.font.SysFont('arial', 50)
+large_font = pygame.font.SysFont('arial', 80)
 
 
 def snake(block_size, snake_list):
@@ -44,13 +46,18 @@ def snake(block_size, snake_list):
             [block[0], block[1], block_size, block_size])
 
 
-def text_objects(text, color):
-    text_surface = font.render(text, True, color)
+def text_objects(text, color, size):
+    if size == 'small':
+        text_surface = small_font.render(text, True, color)
+    elif size == 'medium':
+        text_surface = medium_font.render(text, True, color)
+    elif size == 'large':
+        text_surface = medium_font.render(text, True, color)
     return text_surface, text_surface.get_rect()
 
 
-def message_to_screen(msg, color, y_displace=0):
-    text_surface, text_rect = text_objects(msg, color)
+def message_to_screen(msg, color, y_displace=0, size='small'):
+    text_surface, text_rect = text_objects(msg, color, size)
     text_rect.center = (display_width/2), (display_height/2) + y_displace
     game_display.blit(text_surface, text_rect)
 
@@ -75,8 +82,12 @@ def game_loop():
     while not game_exit:
         while game_over is True:
             game_display.fill(white)
-            message_to_screen("Game over", red, -50)
-            message_to_screen("Press C to play again or Q to quit", black, 50)
+            message_to_screen("Game over", red, -50, 'large')
+            message_to_screen(
+                "Press C to play again or Q to quit",
+                black,
+                50,
+                'small')
             pygame.display.update()
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
