@@ -28,7 +28,15 @@ font = pygame.font.SysFont(None, 25)
 
 
 def snake(block_size, snake_list):
-    game_display.blit(img, (snake_list[-1][0], snake_list[-1][1]))
+    if direction == 'right':
+        head = pygame.transform.rotate(img, 270)
+    if direction == 'left':
+        head = pygame.transform.rotate(img, 90)
+    if direction == 'up':
+        head = img
+    if direction == 'down':
+        head = pygame.transform.rotate(img, 180)
+    game_display.blit(head, (snake_list[-1][0], snake_list[-1][1]))
     for block in snake_list[:-1]:
         pygame.draw.rect(
             game_display,
@@ -49,6 +57,7 @@ def message_to_screen(msg, color):
 
 
 def game_loop():
+    global direction
     game_exit = False
     game_over = False
     lead_x = display_width/2
@@ -83,15 +92,19 @@ def game_loop():
                 game_exit = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
+                    direction = 'left'
                     lead_x_change = -block_change
                     lead_y_change = 0
                 elif event.key == pygame.K_RIGHT:
+                    direction = 'right'
                     lead_x_change = block_change
                     lead_y_change = 0
                 elif event.key == pygame.K_UP:
+                    direction = 'up'
                     lead_y_change = -block_change
                     lead_x_change = 0
                 elif event.key == pygame.K_DOWN:
+                    direction = 'down'
                     lead_y_change = block_change
                     lead_x_change = 0
 
