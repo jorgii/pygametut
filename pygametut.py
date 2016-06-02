@@ -136,9 +136,13 @@ def game_loop():
         snake(block_size, snake_list)
         pygame.display.update()
 
-        if lead_x >= rand_apple_x and lead_x <= rand_apple_x + apple_thickness:
-            if lead_y >= rand_apple_y and lead_y <= rand_apple_y + \
-                    apple_thickness:
+        if lead_x > rand_apple_x and lead_x < rand_apple_x + apple_thickness \
+                or lead_x + block_size > rand_apple_x and \
+                lead_x + block_size < rand_apple_x + apple_thickness:
+            if lead_y > rand_apple_y and \
+                    lead_y < rand_apple_y + apple_thickness or \
+                    lead_y + block_size > rand_apple_y and \
+                    lead_y + block_size < rand_apple_y + apple_thickness:
                 rand_apple_x = round(random.randrange(
                     0,
                     display_width - block_size)/block_size)*block_size
