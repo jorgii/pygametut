@@ -62,8 +62,49 @@ def message_to_screen(msg, color, y_displace=0, size='small'):
     game_display.blit(text_surface, text_rect)
 
 
+def game_intro():
+    intro = True
+
+    while intro:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:
+                    intro = False
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    quit()
+        game_display.fill(white)
+        message_to_screen(
+            "Welcome to Slither",
+            green,
+            -100,
+            "large")
+        message_to_screen(
+            "The objective of the game is to eat red apples",
+            black,
+            -30)
+        message_to_screen(
+            "The more apples you eat, the longer you get",
+            black,
+            10)
+        message_to_screen(
+            "If you run into yourself or the edges, you die!",
+            black,
+            50)
+        message_to_screen(
+            "Press C to play or Q to quite!",
+            black,
+            180)
+        pygame.display.update()
+        clock.tick(15)
+
+
 def game_loop():
     global direction
+    direction = "right"
     game_exit = False
     game_over = False
     lead_x = display_width/2
@@ -166,4 +207,5 @@ def game_loop():
     pygame.quit()
     quit()
 
+game_intro()
 game_loop()
