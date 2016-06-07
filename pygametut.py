@@ -66,6 +66,38 @@ def message_to_screen(msg, color, y_displace=0, size='small'):
     game_display.blit(text_surface, text_rect)
 
 
+def pause():
+    paused = True
+    while paused:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:
+                    paused = False
+                elif event.key == pygame.K_q:
+                    pygame.quit()
+                    quit()
+        game_display.fill(white)
+        message_to_screen(
+            "Paused",
+            black,
+            -100,
+            size="large")
+        message_to_screen(
+            "Press C to continue or Q to quit.",
+            black,
+            25)
+        pygame.display.update()
+        clock.tick(5)
+
+
+def score(score):
+    text = small_font.render("score: " + str(score), True, black)
+    game_display.blit(text, [0, 0])
+
+
 def rand_apple_gen():
     rand_apple_x = round(random.randrange(
         0,
@@ -109,7 +141,7 @@ def game_intro():
             black,
             50)
         message_to_screen(
-            "Press C to play or Q to quite!",
+            "Press C to play, P to pause, or Q to quite!",
             black,
             180)
         pygame.display.update()
@@ -167,6 +199,8 @@ def game_loop():
                     direction = 'down'
                     lead_y_change = block_change
                     lead_x_change = 0
+                elif event.key == pygame.K_p:
+                    pause()
 
         if lead_x > (display_width - block_size) or \
                 lead_x < 0 or \
@@ -190,6 +224,7 @@ def game_loop():
             if segment == snake_head:
                 game_over = True
         snake(block_size, snake_list)
+        score(snake_length - 1)
         pygame.display.update()
 
         if lead_x > rand_apple_x and lead_x < rand_apple_x + apple_thickness \
