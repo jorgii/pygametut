@@ -66,6 +66,16 @@ def message_to_screen(msg, color, y_displace=0, size='small'):
     game_display.blit(text_surface, text_rect)
 
 
+def rand_apple_gen():
+    rand_apple_x = round(random.randrange(
+        0,
+        display_width - apple_thickness)/apple_thickness)*apple_thickness
+    rand_apple_y = round(random.randrange(
+        0,
+        display_height - apple_thickness)/apple_thickness)*apple_thickness
+    return(rand_apple_x, rand_apple_y)
+
+
 def game_intro():
     intro = True
 
@@ -117,12 +127,7 @@ def game_loop():
     lead_y_change = 0
     snake_list = []
     snake_length = 1
-    rand_apple_x = round(random.randrange(
-        0,
-        display_width - apple_thickness)/apple_thickness)*apple_thickness
-    rand_apple_y = round(random.randrange(
-        0,
-        display_height - apple_thickness)/apple_thickness)*apple_thickness
+    rand_apple_x, rand_apple_y = rand_apple_gen()
 
     while not game_exit:
         while game_over is True:
@@ -194,12 +199,7 @@ def game_loop():
                     lead_y < rand_apple_y + apple_thickness or \
                     lead_y + block_size > rand_apple_y and \
                     lead_y + block_size < rand_apple_y + apple_thickness:
-                rand_apple_x = round(random.randrange(
-                    0,
-                    display_width - block_size)/block_size)*block_size
-                rand_apple_y = round(random.randrange(
-                    0,
-                    display_height - block_size)/block_size)*block_size
+                rand_apple_x, rand_apple_y = rand_apple_gen()
                 snake_length += 1
 
         clock.tick(FPS)
