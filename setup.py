@@ -6,7 +6,7 @@ import cx_Freeze
 os.environ["TCL_LIBRARY"] = os.path.normpath("C:/Python34/tcl/tcl8.6")
 os.environ["TK_LIBRARY"] = os.path.normpath("C:/Python34/tcl/tk8.6")
 
-executables = [cx_Freeze.Executable("pygametut.py")]
+executables = [cx_Freeze.Executable("slither.py")]
 
 cx_Freeze.setup(
     name="Slither",
