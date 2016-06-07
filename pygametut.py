@@ -15,8 +15,11 @@ display_height = 600
 
 game_display = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Slither')
+icon = pygame.image.load('apple.png')
+pygame.display.set_icon(icon)
 
 img = pygame.image.load('snake_head.png')
+apple_img = pygame.image.load('apple.png')
 block_size = 20
 block_change = 10
 FPS = 30
@@ -170,10 +173,7 @@ def game_loop():
 
         game_display.fill(white)
         apple_thickness = 30
-        pygame.draw.rect(
-            game_display,
-            green,
-            [rand_apple_x, rand_apple_y, apple_thickness, apple_thickness])
+        game_display.blit(apple_img, (rand_apple_x, rand_apple_y))
         snake_head = []
         snake_head.append(lead_x)
         snake_head.append(lead_y)
