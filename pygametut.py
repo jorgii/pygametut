@@ -141,7 +141,7 @@ def game_intro():
             black,
             50)
         message_to_screen(
-            "Press C to play, P to pause, or Q to quite!",
+            "Press C to play, P to pause, or Q to quit!",
             black,
             180)
         pygame.display.update()
