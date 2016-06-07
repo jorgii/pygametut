@@ -22,6 +22,7 @@ img = pygame.image.load('snake_head.png')
 apple_img = pygame.image.load('apple.png')
 block_size = 20
 block_change = 10
+apple_thickness = 30
 FPS = 30
 direction = 'right'
 
@@ -118,10 +119,10 @@ def game_loop():
     snake_length = 1
     rand_apple_x = round(random.randrange(
         0,
-        display_width - block_size)/block_size)*block_size
+        display_width - apple_thickness)/apple_thickness)*apple_thickness
     rand_apple_y = round(random.randrange(
         0,
-        display_height - block_size)/block_size)*block_size
+        display_height - apple_thickness)/apple_thickness)*apple_thickness
 
     while not game_exit:
         while game_over is True:
@@ -172,7 +173,6 @@ def game_loop():
         lead_y += lead_y_change
 
         game_display.fill(white)
-        apple_thickness = 30
         game_display.blit(apple_img, (rand_apple_x, rand_apple_y))
         snake_head = []
         snake_head.append(lead_x)
